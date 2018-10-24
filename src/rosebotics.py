@@ -9,7 +9,7 @@
 
 from ev3dev import ev3
 from enum import Enum
-import low_level_rosebotics as rb
+import low_level_rosebotics as llrb
 import time
 
 
@@ -60,8 +60,8 @@ class DriveSystem(object):
     def __init__(self,
                  left_wheel_port=ev3.OUTPUT_B,
                  right_wheel_port=ev3.OUTPUT_C):
-        self.left_wheel = rb.Wheel(left_wheel_port)
-        self.right_wheel = rb.Wheel(right_wheel_port)
+        self.left_wheel = llrb.Wheel(left_wheel_port)
+        self.right_wheel = llrb.Wheel(right_wheel_port)
 
     def start_moving(self,
                      left_wheel_duty_cycle_percent=100,
@@ -84,8 +84,6 @@ class DriveSystem(object):
         Move for the given number of seconds at the given wheel speeds.
         Speeds are -100 to 100, where negative means moving backwards.
         """
-        self.start_moving(left_wheel_duty_cycle_percent,
-                          right_wheel_duty_cycle_percent)
         # For pedagogical purposes, we use a WHILE loop to keep  going for a
         # given number of seconds, instead of using the simpler alternative:
         #      time.sleep(seconds)
@@ -172,7 +170,7 @@ class ArmAndClaw(object):
         # TODO
 
 
-class TouchSensor(rb.TouchSensor):
+class TouchSensor(llrb.TouchSensor):
     """ Primary author of this class:  PUT_YOUR_NAME_HERE. """
 
     def __init__(self, port=ev3.INPUT_1):
@@ -191,7 +189,7 @@ class Camera(object):
     """ Primary author of this class:  PUT_YOUR_NAME_HERE. """
 
 
-class ColorSensor(rb.ColorSensor):
+class ColorSensor(llrb.ColorSensor):
     """ Primary author of this class:  PUT_YOUR_NAME_HERE. """
 
     def __init__(self, port=ev3.INPUT_3):
